@@ -9,7 +9,8 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "products_table")
 public class Products {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
+    @ColumnInfo(name = "id")
     public int id;
 
     @NonNull
@@ -28,13 +29,15 @@ public class Products {
     @ColumnInfo(name = "image")
     private String mImage;
 
-    public Products(String product, String description, int price, String image) {
+    public Products(int id, String product, String description, int price, String image) {
+        this.id = id;
         this.mProduct = product;
         this.mDescription = description;
         this.mPrice = price;
         this.mImage = image;
     }
 
+    public int getId() {return this.id;}
     public String getProduct(){return this.mProduct;}
     public String getDescription(){return this.mDescription;}
     public int getPrice(){return this.mPrice;}

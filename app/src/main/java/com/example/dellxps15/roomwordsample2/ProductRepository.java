@@ -10,6 +10,7 @@ public class ProductRepository {
 
     private ProductDao mProductDao;
     private LiveData<List<Products>> mAllProducts;
+    private Products iAllProducts;
 
     ProductRepository(Application application) {
         ProductRoomDatabase db = ProductRoomDatabase.getDatabase(application);
@@ -20,6 +21,13 @@ public class ProductRepository {
     LiveData<List<Products>> getAllProducts() {
         return mAllProducts;
     }
+    Products getProductById(int id) {
+        try{
+            iAllProducts = new findItemAsyncTask(mProductDao).execute(new Integer(id)).get();
+        } catch(Exception e){
+            e.printStackTrace();
+        } return iAllProducts;
+    }
 
     public void insert (Products product) {
         new insertAsyncTask(mProductDao).execute(product);
@@ -28,7 +36,6 @@ public class ProductRepository {
     private static class insertAsyncTask extends AsyncTask<Products, Void, Void> {
 
         private ProductDao mAsyncTaskDao;
-
         insertAsyncTask(ProductDao dao) {
             mAsyncTaskDao = dao;
         }
@@ -39,4 +46,19 @@ public class ProductRepository {
             return null;
         }
     }
+
+    private static class findItemAsyncTask extends AsyncTask<Integer, Void, Products> {
+
+        private ProductDao mAsyncTaskDao;
+        findItemAsyncTask(ProductDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Products doInBackground(Integer... id) {
+            Products result = mAsyncTaskDao.getProductById(id[0].intValue());
+            return result;
+        }
+    }
+
 }

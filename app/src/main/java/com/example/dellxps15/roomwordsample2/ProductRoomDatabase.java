@@ -8,7 +8,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-@Database(entities = {Products.class}, version = 1)
+@Database(entities = {Products.class}, version = 2)
 public abstract class ProductRoomDatabase extends RoomDatabase{
 
     public abstract ProductDao productDao();
@@ -23,8 +23,8 @@ public abstract class ProductRoomDatabase extends RoomDatabase{
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             ProductRoomDatabase.class, "product_database")
                             .addCallback(sRoomDatabaseCallback)
+                            .fallbackToDestructiveMigration()
                             .build();
-
                 }
             }
         }
@@ -52,13 +52,13 @@ public abstract class ProductRoomDatabase extends RoomDatabase{
         @Override
         protected Void doInBackground(final Void... params) {
             mDao.deleteAll();
-            Products word = new Products("Mont Blanc 149", "Gold-tip Mont Blanc (Black and Gold)", 678, "img");
+            Products word = new Products(0,"Mont Blanc 149", "Gold-tip Mont Blanc (Black and Gold) Made in Switzerland", 678, "a1");
             mDao.insert(word);
-            word = new Products("Pelikan Premium M1000", "Gold/Silver tip Pelikan (Sea Green and Black)", 380, "img");
+            word = new Products(1,"Pelikan Premium M1000", "Gold/Silver tip Pelikan (Sea Green and Black) Made in France", 380, "a2");
             mDao.insert(word);
-            word = new Products("Pilot Custom 823", "Gold-tip Pilot (Brown and Gold)", 359, "img");
+            word = new Products(2,"Pilot Custom 823", "Gold-tip Pilot (Brown and Gold) Made in Japan", 359, "a3");
             mDao.insert(word);
-            word = new Products("Platinum 3776 CENTURY", "Gold-tip Platinum (Royal Blue)", 72, "img");
+            word = new Products(3,"Platinum 3776 CENTURY", "Gold-tip Platinum (Royal Blue) Made in Belgium", 72, "a4");
             mDao.insert(word);
             return null;
         }

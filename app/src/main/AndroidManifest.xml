@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dellxps15.roomwordsample2">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,6 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:label="RoomWordSample2" android:name=".CheckoutActivity"/>
+        <activity android:label="RoomWordSample2" android:name=".PaymentActivity"/>
+        <activity android:label="RoomWordSample2" android:name=".SuccessActivity"/>
+        <activity android:label="RoomWordSample2" android:name=".DashboardActivity"/>
+        <activity android:label="RoomWordSample2" android:name=".LoginActivity"/>
+        <activity android:label="RoomWordSample2" android:name=".RegisterActivity"/>
     </application>
 
 </manifest>

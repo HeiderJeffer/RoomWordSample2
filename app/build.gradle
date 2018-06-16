@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.example.dellxps15.roomwordsample2"
         minSdkVersion 19
@@ -35,4 +37,13 @@ dependencies {
     // Lifecycle components
     implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
+
+    implementation 'com.stripe:stripe-android:6.1.2'
+    implementation "com.stripe:stripe-java:5.36.0"
+
+    implementation 'com.google.http-client:google-http-client-android:+'
+    implementation 'com.google.api-client:google-api-client-android:+'
+    implementation 'com.google.api-client:google-api-client-gson:+'
+
+    implementation 'com.android.volley:volley:1.0.0'
 }

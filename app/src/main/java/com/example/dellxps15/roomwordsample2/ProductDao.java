@@ -18,4 +18,7 @@ public interface ProductDao {
 
     @Query("SELECT * from products_table ORDER BY product ASC")
     LiveData<List<Products>> getAllProducts();
+
+    @Query("SELECT * FROM products_table WHERE id = :id ")
+    Products getProductById(int id);
 }
