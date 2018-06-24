@@ -13,7 +13,7 @@ We connect to the Stripe api using secure tokenized communication and request fo
 - shopping cart [DONE]
 The user can add to the cart which does not involve an external database connection and so it is completely offline, the user can go to the checkout page and see the list of items added to the cart. 
 
-- authentication of app users (google login)[DONE]
+- authentication of app users (By us login)[DONE]
 
 - the application should be robust [DONE]
 Appropriate error handling is done in all parts of the application and the user is prompted with error messages when necessary. Also, the security in communicating with the stripe api is taken into consideration which grants it more robustness as the communication is securely tokenized.  
